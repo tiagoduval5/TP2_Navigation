@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Home from "./Home";
-import Users from "./Users";
-import About from "./About";
+import Home from "./Home.jsx";
+import Users from "./Users.jsx";
+import About from "./About.jsx";
 
 function App() {
 	return (
