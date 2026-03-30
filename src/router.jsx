@@ -1,10 +1,20 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
-import Home from "./Home.jsx";
-import Users from "./Users.jsx";
-import About from "./About.jsx";
 
-const HomePage = () => (
+// Lazy loading des routes pour optimiser les performances
+const HomePage = lazy(() => import("./Home.jsx"));
+const Users = lazy(() => import("./Users.jsx"));
+const About = lazy(() => import("./About.jsx"));
+
+// Composant de chargement
+const LoadingFallback = () => (
+	<div style={{ padding: "40px", textAlign: "center" }}>
+		<p>Chargement...</p>
+	</div>
+);
+
+const HomePageContent = () => (
 	<>
 		<section className="hero-section">
 			<div className="hero-content">
@@ -45,20 +55,40 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <HomePage />,
+				element: (
+					<Suspense fallback={<LoadingFallback />}>
+						<HomePageContent />
+					</Suspense>
+				),
 			},
 			{
 				path: "users",
-				element: <Users />,
+				element: (
+					<Suspense fallback={<LoadingFallback />}>
+						<Users />
+					</Suspense>
+				),
 			},
 			{
 				path: "about",
-				element: <About />,
+				element: (
+					<Suspense fallback={<LoadingFallback />}>
+						<About />
+					</Suspense>
+				),
 			},
 			{
 				path: "home",
-				element: <Home />,
+				element: (
+					<Suspense fallback={<LoadingFallback />}>
+						<HomePage />
+					</Suspense>
+				),
 			},
 		],
 	},
 ]);
+
+console.time("Router initialization");
+console.log("Router initialized with lazy loading");
+console.timeEnd("Router initialization");
