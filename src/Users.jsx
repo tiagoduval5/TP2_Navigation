@@ -1,6 +1,6 @@
 function Users() {
     return (
-        <div>
+        <div style={{ padding: "40px", maxWidth: "1200px", margin: "0 auto" }}>
             <h1>Page des utilisateurs</h1>
             <p>Voici la liste de nos utilisateurs :</p>
             <ul>
