@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import { Link } from "react-router-dom";
 import { fetchAllUsers } from "../api/api.jsx";
 import "../style/Users.css";
@@ -50,8 +50,11 @@ function Users() {
 			</div>
 		);
 
-	const filtered = users.filter((u) =>
-		u.username.toLowerCase().includes(query.toLowerCase()),
+	const filtered = useMemo(() => 
+		users.filter((u) =>
+			u.username.toLowerCase().includes(query.toLowerCase()),
+		),
+		[users, query]
 	);
 
 	return (
@@ -75,4 +78,4 @@ function Users() {
 	);
 }
 
-export default Users;
+export default memo(Users);

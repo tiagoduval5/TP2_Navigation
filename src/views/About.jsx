@@ -1,8 +1,7 @@
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 import "../style/About.css";
 
 function About() {
-	// Mémoriser les données pour ne pas les recalculer à chaque rendu
 	const pageData = useMemo(
 		() => ({
 			title: "À propos de nous",
@@ -20,4 +19,4 @@ function About() {
 	);
 }
 
-export default About;
+export default memo(About);
