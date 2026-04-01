@@ -1,11 +1,11 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import App from "./App.jsx";
+import App from "../App.jsx";
 
-const Home = lazy(() => import("./Home.jsx"));
-const Users = lazy(() => import("./Users.jsx"));
-const UserDetails = lazy(() => import("./UserDetails.jsx"));
-const About = lazy(() => import("./About.jsx"));
+const Home = lazy(() => import("../views/Home.jsx"));
+const Users = lazy(() => import("../views/Users.jsx"));
+const UserDetails = lazy(() => import("../views/UserDetails.jsx"));
+const About = lazy(() => import("../views/About.jsx"));
 
 function Loading() {
   return (
@@ -15,24 +15,19 @@ function Loading() {
   );
 }
 
-const HomePage = () => (
-  <section className="hero-section">
-    <div className="hero-content">
-      <h1>Bienvenue sur le site</h1>
-      <p>Découvrez ma super page d'exemple</p>
-      <button type="button" className="cta-button">
-        Commencer
-      </button>
-    </div>
-  </section>
-);
-
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { index: true, element: <HomePage /> },
+      { 
+        index: true, 
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Home />
+          </Suspense>
+        )
+      },
       {
         path: "users",
         element: (

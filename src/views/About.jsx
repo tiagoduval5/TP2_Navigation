@@ -1,18 +1,19 @@
 import { useMemo } from "react";
+import "../style/About.css";
 
-function Home() {
+function About() {
 	// Mémoriser les données pour ne pas les recalculer à chaque rendu
 	const pageData = useMemo(() => ({
-		title: "Page d'accueil",
-		message: "Bienvenue sur la page d'accueil de notre site !"
+		title: "À propos de nous",
+		message: "Nous sommes une entreprise dédiée à fournir les meilleurs services à nos clients."
 	}), []);
 
 	return (
-		<div style={{ padding: "40px", maxWidth: "1200px", margin: "0 auto" }}>
+		<div className="about-container">
 			<h1>{pageData.title}</h1>
 			<p>{pageData.message}</p>
 		</div>
 	);
 }
 
-export default Home;
+export default About;
