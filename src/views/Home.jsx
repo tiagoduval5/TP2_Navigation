@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function Home() {
 	return (
 		<section className="hero-section">
@@ -12,4 +14,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default memo(Home);

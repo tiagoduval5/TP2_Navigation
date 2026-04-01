@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { fetchUserById } from "../api/api.jsx";
 import "../style/UserDetails.css";
 
@@ -69,4 +69,4 @@ function UserDetails() {
 	);
 }
 
-export default UserDetails;
+export default memo(UserDetails);

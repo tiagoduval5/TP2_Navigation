@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, memo } from "react";
 import "../style/About.css";
 
 function About() {
@@ -16,4 +16,4 @@ function About() {
 	);
 }
 
-export default About;
+export default memo(About);

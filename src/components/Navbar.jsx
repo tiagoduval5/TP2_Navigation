@@ -1,25 +1,26 @@
 import { NavLink } from "react-router-dom";
+import { useMemo, memo } from "react";
 
 function Navbar() {
+	const navItems = useMemo(() => [
+		{ path: "/", label: "Accueil" },
+		{ path: "/users", label: "Users" },
+		{ path: "/about", label: "About" },
+		{ path: "/home", label: "Home" },
+	], []);
+
 	return (
 		<nav className="navbar-nav">
-			<NavLink to="/" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-				Accueil
-			</NavLink>
-			<span className="nav-separator">|</span>
-			<NavLink to="/users" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-				Users
-			</NavLink>
-			<span className="nav-separator">|</span>
-			<NavLink to="/about" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-				About
-			</NavLink>
-			<span className="nav-separator">|</span>
-			<NavLink to="/home" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
-				Home
-			</NavLink>
+			{navItems.map((item, index) => (
+				<div key={item.path}>
+					<NavLink to={item.path} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+						{item.label}
+					</NavLink>
+					{index < navItems.length - 1 && <span className="nav-separator">|</span>}
+				</div>
+			))}
 		</nav>
 	);
 }
 
-export default Navbar;
+export default memo(Navbar);
