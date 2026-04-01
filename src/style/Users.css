@@ -1,15 +1,15 @@
 .users-container {
-  padding: 40px;
   max-width: 800px;
   margin: 0 auto;
+  padding: 40px;
 }
 
 .users-search {
-  padding: 8px;
-  width: 100%;
-  margin-bottom: 20px;
   border: 1px solid #e5e7eb;
   border-radius: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 8px;
   font-size: 16px;
 }
 
@@ -18,14 +18,14 @@
 }
 
 .users-list {
-  list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .users-list li {
-  padding: 8px 0;
   border-bottom: 1px solid #e5e7eb;
+  padding: 8px 0;
 }
 
 .users-list li:last-child {
@@ -34,9 +34,9 @@
 
 .users-list a {
   color: #3b82f6;
-  text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  text-decoration: none;
+  transition: color .2s;
 }
 
 .users-list a:hover {
@@ -44,19 +44,18 @@
   text-decoration: underline;
 }
 
-/* Error State */
 .error-container {
-  padding: 40px;
   max-width: 800px;
   margin: 0 auto;
+  padding: 40px;
 }
 
 .error-box {
-  padding: 30px;
-  background-color: #fee;
-  border-radius: 8px;
-  border: 1px solid #f99;
   text-align: center;
+  background-color: #fee;
+  border: 1px solid #f99;
+  border-radius: 8px;
+  padding: 30px;
 }
 
 .error-box h2 {
@@ -66,21 +65,21 @@
 }
 
 .error-box p {
-  margin: 0 0 20px;
   color: #666;
+  margin: 0 0 20px;
   font-size: 1rem;
 }
 
 .retry-button {
-  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
   background-color: #3b82f6;
-  color: white;
   border: none;
   border-radius: 6px;
-  cursor: pointer;
+  padding: 10px 20px;
   font-size: 16px;
   font-weight: 500;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color .2s, transform .2s;
 }
 
 .retry-button:hover {

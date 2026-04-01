@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchAllUsers } from "../api/api.jsx";
 import "../style/Users.css";
@@ -43,7 +43,7 @@ function Users() {
 				<div className="error-box">
 					<h2>⚠️ Impossible de charger</h2>
 					<p>Une erreur est survenue. Veuillez réessayer plus tard.</p>
-					<button onClick={fetchUsers} className="retry-button">
+					<button type="button" onClick={fetchUsers} className="retry-button">
 						🔄 Réessayer
 					</button>
 				</div>
