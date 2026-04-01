@@ -1,20 +1,42 @@
-import { useMemo } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Users() {
-	// Mémoriser la liste des utilisateurs pour ne pas la recalculer à chaque rendu
-	const usersList = useMemo(() => [
-		"Utilisateur 1",
-		"Utilisateur 2",
-		"Utilisateur 3"
-	], []);
+	const [users, setUsers] = useState([]);
+	const [query, setQuery] = useState("");
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		fetch("https://jsonplaceholder.typicode.com/users")
+			.then((res) => res.json())
+			.then((data) => {
+				setUsers(data);
+				setLoading(false);
+			})
+			.catch(() => setLoading(false));
+	}, []);
+
+	if (loading) return <p>Chargement des utilisateurs...</p>;
+
+	const filtered = users.filter((u) =>
+		u.username.toLowerCase().includes(query.toLowerCase()),
+	);
 
 	return (
-		<div style={{ padding: "40px", maxWidth: "1200px", margin: "0 auto" }}>
-			<h1>Page des utilisateurs</h1>
-			<p>Voici la liste de nos utilisateurs :</p>
+		<div style={{ padding: "40px", maxWidth: "800px", margin: "0 auto" }}>
+			<h1>Liste des utilisateurs</h1>
+			<input
+				type="text"
+				placeholder="Recherche par username..."
+				value={query}
+				onChange={(e) => setQuery(e.target.value)}
+				style={{ padding: "8px", width: "100%", marginBottom: "20px" }}
+			/>
 			<ul>
-				{usersList.map((user, index) => (
-					<li key={index}>{user}</li>
+				{filtered.map((user) => (
+					<li key={user.id}>
+						<Link to={`/users/${user.id}`}>@{user.username}</Link>
+					</li>
 				))}
 			</ul>
 		</div>
