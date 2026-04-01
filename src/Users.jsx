@@ -7,13 +7,25 @@ function Users() {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		console.time("⏱️ Chargement des utilisateurs");
+		const startTime = performance.now();
+		
 		fetch("https://jsonplaceholder.typicode.com/users")
-			.then((res) => res.json())
+			.then((res) => {
+				console.log("📡 Réponse reçue");
+				return res.json();
+			})
 			.then((data) => {
+				const endTime = performance.now();
+				console.timeEnd("⏱️ Chargement des utilisateurs");
+				console.log(`✅ ${data.length} utilisateurs chargés en ${(endTime - startTime).toFixed(2)}ms`);
 				setUsers(data);
 				setLoading(false);
 			})
-			.catch(() => setLoading(false));
+			.catch((error) => {
+				console.error("❌ Erreur de chargement:", error);
+				setLoading(false);
+			});
 	}, []);
 
 	if (loading) return <p>Chargement des utilisateurs...</p>;
